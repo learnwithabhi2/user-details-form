@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Information</title>
+    <style>
+        form {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>User Information</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save">
+</form>
+
+<h2>Existing Submissions</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Country</th>
+            <th>State</th>
+            <th>Gender</th>
+            <th>Occupation</th>
+            <th>Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for submission in submissions %}
+        <tr>
+            <td>{{ submission.name }}</td>
+            <td>{{ submission.age }}</td>
+            <td>{{ submission.email }}</td>
+            <td>{{ submission.phone }}</td>
+            <td>{{ submission.address }}</td>
+            <td>{{ submission.country }}</td>
+            <td>{{ submission.state }}</td>
+            <td>{{ submission.gender }}</td>
+            <td>{{ submission.occupation }}</td>
+            <td>{{ submission.comments }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
